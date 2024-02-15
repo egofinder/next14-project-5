@@ -1,25 +1,28 @@
 "use client";
 
-import Mapbox from "react-map-gl";
+import Mapbox, { Marker } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 interface MapProps {
-  center?: number[];
+  center?: number[] | null;
 }
 
 const Map = ({ center }: MapProps) => {
+  const coordinates = center || [33.977666, -117.909685];
   return (
     <Mapbox
       mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
       initialViewState={{
-        longitude: center ? center[1] : -117.909685,
-        latitude: center ? center[0] : 33.977666,
-        zoom: center ? 6 : 2,
+        longitude: coordinates[1],
+        latitude: coordinates[0],
+        zoom: center ? 4 : 2,
       }}
-      style={{ height: 400 }}
+      style={{ height: "35vh", borderRadius: "0.5rem" }}
       mapStyle="mapbox://styles/mapbox/streets-v9"
       scrollZoom={false}
-    />
+    >
+      <Marker longitude={coordinates[1]} latitude={coordinates[0]} />
+    </Mapbox>
     // <MapContainer
     //   center={(center as L.LatLngExpression) || [33.977666, -117.909685]}
     //   zoom={center ? 4 : 2}

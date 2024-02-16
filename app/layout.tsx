@@ -5,9 +5,7 @@ import Navbar from "@/components/navbar/navbar";
 import RegisterModal from "@/components/modals/register-modal";
 import LoginModal from "@/components/modals/login-modal";
 import ToasterProvider from "@/components/providers/toaster-provider";
-import { currentUser } from "@/libs/auth";
 import { SessionProvider } from "next-auth/react";
-import { auth } from "@/auth";
 import RentModal from "@/components/modals/rent-modal";
 
 const nunito = Nunito({ subsets: ["latin"] });
@@ -23,10 +21,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth();
-
   return (
-    <SessionProvider session={session}>
+    <SessionProvider>
       <html lang="en">
         <body className={nunito.className}>
           <ToasterProvider />
@@ -34,7 +30,7 @@ export default async function RootLayout({
           <LoginModal />
           <RegisterModal />
           <Navbar />
-          {children}
+          <div className="pt-28 pb-20">{children}</div>
         </body>
       </html>
     </SessionProvider>

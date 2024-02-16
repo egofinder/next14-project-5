@@ -18,15 +18,13 @@ export default {
     }),
     Credentials({
       async authorize(credentials) {
-        const { email, password } = credentials;
+        if (!credentials.email || !credentials.password) return null;
 
-        if (!email || !password) return null;
-
-        const user = await getUserByEmail(email as string);
+        const user = await getUserByEmail(credentials.email as string);
         if (!user || !user.hashedPassword) return null;
 
         const passwordMatch = await bcrypt.compare(
-          password as string,
+          credentials.password as string,
           user.hashedPassword
         );
         if (passwordMatch) return user;

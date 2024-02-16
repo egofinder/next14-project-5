@@ -12,13 +12,15 @@ const Map = ({ center }: MapProps) => {
   return (
     <Mapbox
       mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
+      //Initial 값만 들어가 있는데 나중에 longitude, latitude가 변경해도
+      //지도위 위치가 고정되어 있는문제가 있어서 usememo를 쓰고 있는것 같음.
       initialViewState={{
         longitude: coordinates[1],
         latitude: coordinates[0],
         zoom: center ? 4 : 2,
       }}
       style={{ height: "35vh", borderRadius: "0.5rem" }}
-      mapStyle="mapbox://styles/mapbox/streets-v9"
+      mapStyle="mapbox://styles/mapbox/streets-v11"
       scrollZoom={false}
     >
       <Marker longitude={coordinates[1]} latitude={coordinates[0]} />

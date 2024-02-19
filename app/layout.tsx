@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description:
     "Airbnb: Vacation Rentals, Cabins, Beach Houses, Unique Homes & Experiences",
 };
-
+// This is the root layout for the app
 export default async function RootLayout({
   children,
 }: Readonly<{

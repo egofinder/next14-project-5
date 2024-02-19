@@ -28,7 +28,7 @@ export default async function getListings(params: IListingsParams) {
     } = params;
 
     if (userId) {
-      query.userId;
+      query.userId = userId;
     }
 
     if (guestCount) {

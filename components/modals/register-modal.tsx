@@ -39,7 +39,7 @@ const RegisterModal = () => {
     registerUser(values).then((data) => {
       registerModal.onClose();
       toast.success("User registered successfully!");
-      console.log(data);
+      loginModal.onOpen();
     });
     setIsLoading(false);
   };

@@ -9,12 +9,14 @@ import useLoginModal from "@/hooks/use-login-modal";
 import { logout } from "@/actions/logout";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import useRentModal from "@/hooks/use-rent-modal";
+import { useRouter } from "next/navigation";
 
 const UserMenu = (session: any) => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
   const rentModal = useRentModal();
   const [isOpened, setIsOpened] = useState(false);
+  const router = useRouter();
 
   const toggleOpen = useCallback(() => {
     setIsOpened((prev) => !prev);
@@ -56,10 +58,22 @@ const UserMenu = (session: any) => {
           <div className="flex flex-col cursor-pointer">
             {currentUser ? (
               <>
-                <MenuItem onClick={() => {}} label="My trips" />
-                <MenuItem onClick={() => {}} label="My favorites" />
-                <MenuItem onClick={() => {}} label="My reservations" />
-                <MenuItem onClick={() => {}} label="My properties" />
+                <MenuItem
+                  onClick={() => router.push("/trips")}
+                  label="My trips"
+                />
+                <MenuItem
+                  onClick={() => router.push("/favorites")}
+                  label="My favorites"
+                />
+                <MenuItem
+                  onClick={() => router.push("/reservations")}
+                  label="My reservations"
+                />
+                <MenuItem
+                  onClick={() => router.push("/properties")}
+                  label="My properties"
+                />
                 <MenuItem onClick={rentModal.onOpen} label="Airbnb my home" />
                 <MenuItem onClick={() => logout()} label="Logout" />
               </>

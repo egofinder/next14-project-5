@@ -3,7 +3,6 @@ import getListings, { IListingsParams } from "@/actions/get-listings";
 import Container from "@/components/container";
 import EmptyState from "@/components/empty-state";
 import ListingCard from "@/components/listings/listing-card";
-import { de } from "date-fns/locale";
 
 interface HomeProps {
   searchParams: IListingsParams;

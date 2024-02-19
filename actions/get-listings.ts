@@ -1,3 +1,4 @@
+"use server";
 import { db } from "@/libs/db";
 
 export interface IListingsParams {
@@ -13,6 +14,8 @@ export interface IListingsParams {
 
 export default async function getListings(params: IListingsParams) {
   try {
+    let query: any = {};
+
     const {
       userId,
       guestCount,
@@ -24,7 +27,6 @@ export default async function getListings(params: IListingsParams) {
       category,
     } = params;
 
-    let query: any = {};
     if (userId) {
       query.userId;
     }
